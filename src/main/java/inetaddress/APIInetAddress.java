@@ -1,16 +1,22 @@
+package inetaddress;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 public class APIInetAddress {
     public static void main(String[] args) {
-        InetAddress direccion = null;
+
         System.out.println("========================================================");
         System.out.println("SALIDA PARA LOCALHOST: ");
         try {
-            //LOCALHOST
-            direccion = InetAddress.getByName("localhost");
-            pruebaMetodosInetAddress(direccion);//
+            InetAddress direccion = InetAddress.getByName("localhost");
+            System.out.println("Objeto InetAddress usando getByName: " + direccion);
+
+            InetAddress dir2 = InetAddress.getLocalHost();
+            System.out.println("Objeto InetAddress usando getLocalHost(): " + dir2);
+
+            //pruebaMetodosInetAddress(direccion);
 
             //URL	www.google.es
             System.out.println("========================================================");
@@ -43,20 +49,10 @@ public class APIInetAddress {
 
         System.out.println("\tMetodo getByName():  " + direccion);
 
-        InetAddress dir2;
-        try {
-            dir2 = InetAddress.getLocalHost();
-            System.out.println("\tMetodo getLocalHost(): " + dir2);
-        }
-        catch (UnknownHostException e)
-        {
-            System.out.println(e.getMessage());
-        }
-
         // USAMOS METODOS DE LA CLASE
-        System.out.println("\tMetodo getHostName(): "+direccion.getHostName());
+        System.out.println("Metodo getHostName(): "+direccion.getHostName());
 
-        System.out.println("\tMetodo getHostAddress(): "+ direccion.getHostAddress());
+        System.out.println("Metodo getHostAddress(): "+ direccion.getHostAddress());
 
         for(byte b:direccion.getAddress())
         {
@@ -64,7 +60,7 @@ public class APIInetAddress {
             System.out.println("Byte: " + valor);
         }
 
-        System.out.println("\tMetodo toString(): " + direccion.toString());
+        System.out.println("Metodo toString(): " + direccion.toString());
 
         //Método isReachable(timeout en milisegundos)
         // Esperaremos máximo 3 segundos (3000 ms)
